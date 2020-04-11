@@ -1,0 +1,33 @@
+parameters:
+  - name: envs
+    type: object
+  - name: uploadCoverageOn
+    type: string
+
+jobs:
+  - job: Test
+
+    strategy:
+      matrix:
+        ${{ each env in parameters.envs }}:
+          ${{ env }}:
+            ${{ if eq(env, 'py36') }}:
+              pythonVersion: "3.6"
+              py: "py36"
+            ${{ if eq(env, 'py37') }}:
+              pythonVersion: "3.7"
+              py: "py37"
+            ${{ if eq(env, 'py38') }}:
+              pythonVersion: "3.8"
+              py: "py38"
+
+    steps:
+      - template: python-install.yml
+        parameters:
+          pythonVersion: $(pythonVersion)
+      - script: scripts/test
+        displayName: "Run tests"
+      - script: |
+          bash <(curl -s https://codecov.io/bash) -Z -C $(Build.SourceVersion)
+        condition: eq(variables['py'], '${{ parameters.uploadCoverageOn }}')
+        displayName: "Upload coverage"

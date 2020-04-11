@@ -1,0 +1,12 @@
+parameters:
+  - name: pythonVersion
+    type: string
+
+jobs:
+  - job: Check
+    steps:
+      - template: python-install.yml
+        parameters:
+          pythonVersion: ${{ parameters.pythonVersion }}
+      - bash: scripts/check
+        displayName: "Run checks"
