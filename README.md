@@ -6,6 +6,15 @@ Azure Pipelines templates for my repos.
 
 ## Usage
 
+First, add a service connection named `github`:
+
+```
+Project settings
+  > Service connections
+    > New service connection
+      > GitHub 
+```
+
 Add this at the beginning of `azure-pipelines.yml`:
 
 ```yaml
@@ -13,7 +22,9 @@ resources:
   repositories:
     - repository: templates
       type: github
-      name: florimondmanca/azure-pipeline-templates
+      endpoint: github
+      name: florimondmanca/azure-pipelines-templates
+      ref: refs/tags/0.1
 ```
 
 Then reference templates as `<template>.yml@templates`.
