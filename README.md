@@ -2,7 +2,7 @@
 
 Azure Pipelines templates for my repos.
 
-**Note**: for my personal use only. I do not guarantee to any stability around here. In other words: please don't use this.
+**Note**: for my personal use only. I do not guarantee any stability around here. In other words: please don't use this.
 
 ## Usage
 
@@ -24,7 +24,7 @@ resources:
       type: github
       endpoint: github
       name: florimondmanca/azure-pipelines-templates
-      ref: refs/tags/0.1
+      ref: refs/tags/1.0
 ```
 
 Then reference templates as `<template>.yml@templates`.
