@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.0 - 2020-04-12
+
+### Changed
+
+- `job--python-test.yml` now expects a `jobs` mapping.
+
+### Added
+
+- Add `step--python-test.yml` (extracted from `job--python-test.yml`).
+
 ## 2.0 - 2020-04-12
 
 ### Changed
