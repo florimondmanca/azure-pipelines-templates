@@ -1,34 +1,30 @@
 parameters:
-  - name: envs
+  - name: jobs
     type: object
-  - name: uploadCoverageOn
-    type: string
 
 jobs:
-  - job: Test
+  - ${{ each job in parameters.jobs }}:
+      - job: ${{ job.key }}
 
-    strategy:
-      matrix:
-        ${{ each env in parameters.envs }}:
-          ${{ env }}:
-            ${{ if eq(env, 'py36') }}:
-              pythonVersion: "3.6"
-              py: "py36"
-            ${{ if eq(env, 'py37') }}:
-              pythonVersion: "3.7"
-              py: "py37"
-            ${{ if eq(env, 'py38') }}:
-              pythonVersion: "3.8"
-              py: "py38"
+        pool:
+          ${{ if or(not(job.value.os), eq(job.value.os, 'linux')) }}:
+            vmImage: "ubuntu-18.04"
+          ${{ if eq(job.value.os, 'windows') }}:
+            vmImage: "vs2017-win2016"
 
-    steps:
-      - template: step--python-install.yml
-        parameters:
-          pythonVersion: $(pythonVersion)
-      - script: scripts/test
-        displayName: "Run tests"
-      - script: |
-          pip install coverage  # Auto-convert `.coverage` to XML.
-          bash <(curl -s https://codecov.io/bash) -Z -C $(Build.SourceVersion)
-        condition: eq(variables['py'], '${{ parameters.uploadCoverageOn }}')
-        displayName: "Upload coverage"
+        ${{ if job.value.services }}:
+          services: ${{ job.value.services }}
+
+        ${{ if job.value.variables }}:
+          variables: ${{ job.value.variables }}
+
+        steps:
+          - template: step--python-test.yml
+            parameters:
+              ${{ if startsWith(job.key, 'py36') }}:
+                pythonVersion: "3.6"
+              ${{ if startsWith(job.key, 'py37') }}:
+                pythonVersion: "3.7"
+              ${{ if startsWith(job.key, 'py38') }}:
+                pythonVersion: "3.8"
+              coverage: ${{ eq(job.value.coverage, true) }}
