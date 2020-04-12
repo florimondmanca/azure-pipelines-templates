@@ -5,7 +5,7 @@ parameters:
 jobs:
   - job: Check
     steps:
-      - template: python-install.yml
+      - template: step--python-install.yml
         parameters:
           pythonVersion: ${{ parameters.pythonVersion }}
       - bash: scripts/check

@@ -22,7 +22,7 @@ jobs:
               py: "py38"
 
     steps:
-      - template: python-install.yml
+      - template: step--python-install.yml
         parameters:
           pythonVersion: $(pythonVersion)
       - script: scripts/test
