@@ -19,5 +19,5 @@ steps:
   - task: Cache@2
     inputs: ${{ parameters.cacheConfig }}
 
-  - script: scripts/install
+  - bash: scripts/install
     displayName: "Install dependencies"
