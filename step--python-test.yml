@@ -1,0 +1,18 @@
+parameters:
+  - name: pythonVersion
+    type: string
+  - name: coverage
+    type: boolean
+    default: false
+
+steps:
+  - template: step--python-install.yml
+    parameters:
+      pythonVersion: ${{ parameters.pythonVersion }}
+  - bash: scripts/test
+    displayName: "Run tests"
+  - script: |
+      pip install coverage  # Auto-convert `.coverage` to XML.
+      bash <(curl -s https://codecov.io/bash) -Z -C $(Build.SourceVersion)
+    condition: eq('${{ parameters.coverage }}', 'true')
+    displayName: "Upload coverage"
