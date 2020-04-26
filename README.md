@@ -70,6 +70,19 @@ jobs:
 
 ## Steps
 
+### `step--python-provision.yml`
+
+Setup a Python runtime and a cache for pip dependencies.
+
+Example:
+
+```yaml
+steps:
+  - template: step--python-provision.yml@templates
+    parameters:
+      pythonVersion: "3.8"
+```
+
 ### `step--python-install.yml`
 
 Expected scripts: `scripts/install`.
