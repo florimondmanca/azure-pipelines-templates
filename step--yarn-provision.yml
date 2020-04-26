@@ -3,7 +3,7 @@ parameters:
     type: string
 
 steps:
-  - task: NodeTools@0
+  - task: NodeTool@0
     inputs:
       versionSpec: "${{ parameters.nodeVersion }}"
 
@@ -13,4 +13,4 @@ steps:
       restoreKeys: |
         yarn | "$(Agent.OS)"
       path: $(YARN_CACHE_DIR)
-    displayName: Cache Node dependencies
+    displayName: Cache Yarn dependencies
