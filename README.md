@@ -96,3 +96,16 @@ steps:
       pythonVersion: "3.8"
       coverage: true  # optional
 ```
+
+### `step--yarn-provision.yml`
+
+Setup a Node.js runtime and a cache for Yarn dependencies.
+
+Example:
+
+```yaml
+steps:
+  - template: step--yarn-provision.yml@templates
+    parameters:
+      nodeVersion: "12.x"
+```
