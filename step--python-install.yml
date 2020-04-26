@@ -1,14 +1,6 @@
 parameters:
   - name: pythonVersion
     type: string
-  - name: cacheConfig
-    type: object
-    default:
-      key: "pip | $(Agent.OS) | requirements.txt"
-      restoreKeys: |
-        pip | $(Agent.OS)
-        pip
-      path: $(PIP_CACHE_DIR)
 
 steps:
   - task: UsePythonVersion@0
@@ -17,7 +9,13 @@ steps:
     displayName: "Use Python ${{ parameters.pythonVersion }}"
 
   - task: Cache@2
-    inputs: ${{ parameters.cacheConfig }}
+    inputs:
+      key: "pip | $(Agent.OS) | requirements.txt"
+      restoreKeys: |
+        pip | $(Agent.OS)
+        pip
+      path: $(PIP_CACHE_DIR)
+    displayName: "Cache pip dependencies"
 
   - bash: scripts/install
     displayName: "Install dependencies"
