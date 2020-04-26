@@ -6,6 +6,7 @@ steps:
   - task: NodeTool@0
     inputs:
       versionSpec: "${{ parameters.nodeVersion }}"
+    displayName: "Use Node ${{ parameters.nodeVersion }}"
 
   - task: Cache@2
     inputs:
