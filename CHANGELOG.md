@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2 - 2020-06-07
+
+### Added
+
+- Add `job--python-publish--tag.yml`.
+
 ## 3.1 - 2020-05-02
 
 ### Added
