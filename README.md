@@ -12,7 +12,7 @@ First, add a service connection named `github`:
 Project settings
   > Service connections
     > New service connection
-      > GitHub 
+      > GitHub
 ```
 
 Add this at the beginning of `azure-pipelines.yml`:
@@ -68,6 +68,36 @@ jobs:
       pythonVersion: "3.8"
 ```
 
+### `job--python-publish.yml`
+
+Publish a Python package to PyPI.
+
+#### Assumptions
+
+- `scripts/install`, `scripts/build`, `scripts/publish`.
+- `twine` and `wheel` must be installed.
+- `pypiRemote` refers to a [Twine upload service connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints#sep-python-upload). The endpoint name and service connection name must be identical.
+
+#### Example
+
+_This example assumes you want to publish on tags._
+
+```yaml
+trigger:
+  - master
+  - refs/tags/*
+
+stages:
+  - stage: test
+    jobs: # ...
+  - stage: publish
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+    jobs:
+      - template: job--python-publish--tag.yml@templates
+        parameters:
+          pypiRemote: pypi-public
+```
+
 ## Steps
 
 ### `step--python-provision.yml`
@@ -107,7 +137,7 @@ steps:
   - template: step--python-test.yml@templates
     parameters:
       pythonVersion: "3.8"
-      coverage: true  # optional
+      coverage: true # optional
 ```
 
 ### `step--yarn-provision.yml`

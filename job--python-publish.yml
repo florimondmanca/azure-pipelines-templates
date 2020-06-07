@@ -1,0 +1,21 @@
+parameters:
+  - name: token
+    type: string
+  - name: repository
+    default: "pypi"
+
+jobs:
+  - job: pypi
+    steps:
+      - template: step--python-install.yml
+        parameters:
+          pythonVersion: "3.8"
+      - bash: scripts/build
+        displayName: "Build package"
+      - bash: scripts/publish
+        env:
+          GIT_REF: $(Build.SourceBranch)
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ parameters.token }}
+          TWINE_REPOSITORY: ${{ parameters.repository }}
+        displayName: "Publish package"
