@@ -65,7 +65,7 @@ Example:
 jobs:
   - template: job--python-check.yml@templates
     parameters:
-      pythonVersion: "3.8"
+      pythonVersion: "3.9"
 ```
 
 ### `job--python-publish.yml`
@@ -110,7 +110,7 @@ Example:
 steps:
   - template: step--python-provision.yml@templates
     parameters:
-      pythonVersion: "3.8"
+      pythonVersion: "3.9"
 ```
 
 ### `step--python-install.yml`
@@ -123,7 +123,7 @@ Example:
 steps:
   - template: step--python-install.yml@templates
     parameters:
-      pythonVersion: "3.8"
+      pythonVersion: "3.9"
 ```
 
 ### `step--python-test.yml`
@@ -136,7 +136,7 @@ Example:
 steps:
   - template: step--python-test.yml@templates
     parameters:
-      pythonVersion: "3.8"
+      pythonVersion: "3.9"
       coverage: true # optional
 ```
 
