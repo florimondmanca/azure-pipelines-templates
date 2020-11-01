@@ -15,4 +15,5 @@ steps:
       pip install coverage  # Auto-convert `.coverage` to XML.
       bash <(curl -s https://codecov.io/bash) -Z -C $(Build.SourceVersion)
     condition: eq('${{ parameters.coverage }}', 'true')
+    continueOnError: true # Don't make builds fail if Codecov is temporarily unavailable.
     displayName: "Upload coverage"
