@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.2.1 - 2020-11-01
+
+_Also re-tagged as `3.2`._
+
+### Fixed
+
+- Improve resilience to Codecov unavailability by allowing coverage uploads to fail in `step--python-test.yml`.
+
 ## 3.2 - 2020-06-07
 
 ### Added
