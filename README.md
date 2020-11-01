@@ -24,7 +24,7 @@ resources:
       type: github
       endpoint: github
       name: florimondmanca/azure-pipelines-templates
-      ref: refs/tags/3.2
+      ref: refs/tags/3.3
 ```
 
 Then reference templates as `<template>.yml@templates`.

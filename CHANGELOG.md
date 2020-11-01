@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.3 - 2020-11-01
+
+### Added
+
+- Add support for Python 3.9.
+
 ## 3.2.1 - 2020-11-01
 
 _Also available as `3.2`._
