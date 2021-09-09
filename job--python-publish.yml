@@ -6,6 +6,8 @@ parameters:
 
 jobs:
   - job: pypi
+    pool:
+      vmImage: "ubuntu-18.04"
     steps:
       - template: step--python-install.yml
         parameters:
