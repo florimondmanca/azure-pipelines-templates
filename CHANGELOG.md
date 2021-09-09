@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.4 - 2021-09-09
+
+### Added
+
+- Add `job--python-docs-build.yml`.
+
+### Fixed
+
+- Ensure all job templates use `ubuntu-18.04` by default. This prevents using `ubuntu-16.04` as a default, as AZP is phasing it out by 2021-09-20.
+
 ## 3.3 - 2020-11-01
 
 ### Added
