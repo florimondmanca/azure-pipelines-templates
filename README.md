@@ -68,13 +68,28 @@ jobs:
       pythonVersion: "3.9"
 ```
 
+### `job--python-docs-build.yml`
+
+Build docs under a Python environment.
+
+Expected scripts: `scripts/install`, `scripts/docs build`.
+
+Example:
+
+```yaml
+jobs:
+  - template: job--python-docs-build.yml@templates
+    parameters:
+      pythonVersion: "3.9"
+```
+
 ### `job--python-publish.yml`
 
 Publish a Python package to PyPI.
 
 #### Assumptions
 
-- `scripts/install`, `scripts/build`, `scripts/publish`.
+- `scripts/install`, `scripts/build`, `scripts/publish` must exist.
 - `twine` and `wheel` must be installed.
 - `pypiRemote` refers to a [Twine upload service connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints#sep-python-upload). The endpoint name and service connection name must be identical.
 

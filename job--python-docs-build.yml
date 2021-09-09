@@ -1,0 +1,14 @@
+parameters:
+  - name: pythonVersion
+    type: string
+
+jobs:
+  - job: Docs
+    pool:
+      vmImage: "ubuntu-18.04"
+    steps:
+      - template: step--python-install.yml
+        parameters:
+          pythonVersion: ${{ parameters.pythonVersion }}
+      - bash: scripts/docs build
+        displayName: "Build docs"
