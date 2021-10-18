@@ -3,6 +3,8 @@ parameters:
     type: string
   - name: repository
     default: "pypi"
+  - name: pythonVersion
+    type: string
 
 jobs:
   - job: pypi
@@ -11,7 +13,7 @@ jobs:
     steps:
       - template: step--python-install.yml
         parameters:
-          pythonVersion: "3.8"
+          pythonVersion: $(pythonVersion)
       - bash: scripts/build
         displayName: "Build package"
       - bash: scripts/publish

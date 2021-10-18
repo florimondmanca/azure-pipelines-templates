@@ -6,6 +6,10 @@
 
 - Add support for Python 3.10.
 
+### Changed
+
+- `job--python-publish.yml` now requires an explicit `pythonVersion` (previously defaulted to `3.8`).
+
 ## 3.4 - 2021-09-09
 
 ### Added
