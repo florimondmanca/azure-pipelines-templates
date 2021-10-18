@@ -29,4 +29,6 @@ jobs:
                 pythonVersion: "3.8"
               ${{ if startsWith(job.key, 'py39') }}:
                 pythonVersion: "3.9"
+              ${{ if startsWith(job.key, 'py310') }}:
+                pythonVersion: "3.10"
               coverage: ${{ eq(job.value.coverage, true) }}

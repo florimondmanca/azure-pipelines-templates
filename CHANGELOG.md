@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Add support for Python 3.10.
+
 ## 3.4 - 2021-09-09
 
 ### Added

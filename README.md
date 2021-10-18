@@ -43,10 +43,10 @@ jobs:
     parameters:
       jobs:
         # Minimal definition:
-        py37: null
+        py310: null
 
         # Complete definition:
-        py38_dj30_windows_pg:
+        py310_dj30_windows_pg:
           coverage: true
           os: windows
           services:
@@ -65,7 +65,7 @@ Example:
 jobs:
   - template: job--python-check.yml@templates
     parameters:
-      pythonVersion: "3.9"
+      pythonVersion: "3.10"
 ```
 
 ### `job--python-docs-build.yml`
@@ -80,7 +80,7 @@ Example:
 jobs:
   - template: job--python-docs-build.yml@templates
     parameters:
-      pythonVersion: "3.9"
+      pythonVersion: "3.10"
 ```
 
 ### `job--python-publish.yml`
@@ -125,7 +125,7 @@ Example:
 steps:
   - template: step--python-provision.yml@templates
     parameters:
-      pythonVersion: "3.9"
+      pythonVersion: "3.10"
 ```
 
 ### `step--python-install.yml`
@@ -138,7 +138,7 @@ Example:
 steps:
   - template: step--python-install.yml@templates
     parameters:
-      pythonVersion: "3.9"
+      pythonVersion: "3.10"
 ```
 
 ### `step--python-test.yml`
@@ -151,7 +151,7 @@ Example:
 steps:
   - template: step--python-test.yml@templates
     parameters:
-      pythonVersion: "3.9"
+      pythonVersion: "3.10"
       coverage: true # optional
 ```
 
