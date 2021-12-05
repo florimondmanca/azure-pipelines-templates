@@ -8,9 +8,9 @@ jobs:
 
         pool:
           ${{ if or(not(job.value.os), eq(job.value.os, 'linux')) }}:
-            vmImage: "ubuntu-18.04"
+            vmImage: "ubuntu-latest"
           ${{ if eq(job.value.os, 'windows') }}:
-            vmImage: "vs2017-win2016"
+            vmImage: "windows-latest"
 
         ${{ if job.value.services }}:
           services: ${{ job.value.services }}
