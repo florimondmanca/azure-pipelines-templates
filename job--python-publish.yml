@@ -9,7 +9,7 @@ parameters:
 jobs:
   - job: pypi
     pool:
-      vmImage: "ubuntu-18.04"
+      vmImage: "ubuntu-latest"
     steps:
       - template: step--python-install.yml
         parameters:
