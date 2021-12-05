@@ -91,7 +91,7 @@ Publish a Python package to PyPI.
 
 - `scripts/install`, `scripts/build`, `scripts/publish` must exist.
 - `twine` and `wheel` must be installed.
-- `pypiRemote` refers to a [Twine upload service connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints#sep-python-upload). The endpoint name and service connection name must be identical.
+- `token` refers to a [PyPI API token](https://pypi.org/help/#apitoken) set via a [Python upload service connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml#python-package-download-service-connection) (Project settings > Service connection > New... > Python package upload). It may be provided through a variable group (Library > Variable group...), as shown below.
 
 #### Example
 
@@ -102,6 +102,10 @@ trigger:
   - master
   - refs/tags/*
 
+variables:
+  # ...
+  - group: pypi-credentials  # Sets $(pypiToken)
+
 stages:
   - stage: test
     jobs: # ...
@@ -110,7 +114,8 @@ stages:
     jobs:
       - template: job--python-publish--tag.yml@templates
         parameters:
-          pypiRemote: pypi-public
+          token: $(pypiToken)
+          pythonVersion: "3.10"
 ```
 
 ## Steps
