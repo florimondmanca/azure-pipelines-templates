@@ -10,5 +10,5 @@ jobs:
       - template: step--python-install.yml
         parameters:
           pythonVersion: ${{ parameters.pythonVersion }}
-      - bash: scripts/docs build
+      - script: make docs
         displayName: "Build docs"

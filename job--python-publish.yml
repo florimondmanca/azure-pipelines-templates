@@ -14,9 +14,9 @@ jobs:
       - template: step--python-install.yml
         parameters:
           pythonVersion: ${{ parameters.pythonVersion }}
-      - bash: scripts/build
+      - script: make build
         displayName: "Build package"
-      - bash: scripts/publish
+      - script: make publish
         env:
           GIT_REF: $(Build.SourceBranch)
           TWINE_USERNAME: __token__

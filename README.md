@@ -33,7 +33,7 @@ Then reference templates as `<template>.yml@templates`.
 
 ### `job--python-test.yml`
 
-Expected scripts: `scripts/install`, `scripts/test`.
+Expected scripts: `make intall`, `make test`.
 
 Example:
 
@@ -57,7 +57,7 @@ jobs:
 
 ### `job--python-check.yml`
 
-Expected scripts: `scripts/install`, `scripts/check`.
+Expected scripts: `make install`, `make check`.
 
 Example:
 
@@ -72,7 +72,7 @@ jobs:
 
 Build docs under a Python environment.
 
-Expected scripts: `scripts/install`, `scripts/docs build`.
+Expected scripts: `make install`, `make docs`.
 
 Example:
 
@@ -89,7 +89,7 @@ Publish a Python package to PyPI.
 
 #### Assumptions
 
-- `scripts/install`, `scripts/build`, `scripts/publish` must exist.
+- `make install`, `make build`, `make publish` must exist.
 - `twine` and `wheel` must be installed.
 - `token` refers to a [PyPI API token](https://pypi.org/help/#apitoken) set via a [Python upload service connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml#python-package-download-service-connection) (Project settings > Service connection > New... > Python package upload). It may be provided through a variable group (Library > Variable group...), as shown below.
 
@@ -135,7 +135,7 @@ steps:
 
 ### `step--python-install.yml`
 
-Expected scripts: `scripts/install`.
+Expected scripts: `make install`.
 
 Example:
 
@@ -148,7 +148,7 @@ steps:
 
 ### `step--python-test.yml`
 
-Expected scripts: `scripts/install`, `scripts/test`.
+Expected scripts: `make install`, `make test`.
 
 Example:
 
