@@ -10,5 +10,5 @@ jobs:
       - template: step--python-install.yml
         parameters:
           pythonVersion: ${{ parameters.pythonVersion }}
-      - bash: scripts/check
+      - script: make check
         displayName: "Run checks"

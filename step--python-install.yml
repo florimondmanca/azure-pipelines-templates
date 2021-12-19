@@ -17,5 +17,5 @@ steps:
       path: $(PIP_CACHE_DIR)
     displayName: "Cache pip dependencies"
 
-  - bash: scripts/install
+  - script: make install
     displayName: "Install dependencies"

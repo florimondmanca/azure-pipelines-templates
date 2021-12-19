@@ -9,7 +9,7 @@ steps:
   - template: step--python-install.yml
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
-  - bash: scripts/test
+  - script: make test
     displayName: "Run tests"
   - script: |
       pip install coverage  # Auto-convert `.coverage` to XML.
