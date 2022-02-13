@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.0 - 2022-02-13
+
+### Changed
+
+- Jobs and tasks now expect `make` targets instead of `scripts/`. (Pull #2)
+
 ## 4.0 - 2021-10-18
 
 ### Added

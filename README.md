@@ -24,7 +24,7 @@ resources:
       type: github
       endpoint: github
       name: florimondmanca/azure-pipelines-templates
-      ref: refs/tags/4.0
+      ref: refs/tags/5.0
 ```
 
 Then reference templates as `<template>.yml@templates`.
@@ -33,7 +33,7 @@ Then reference templates as `<template>.yml@templates`.
 
 ### `job--python-test.yml`
 
-Expected scripts: `make intall`, `make test`.
+Expected scripts: `make install`, `make test`.
 
 Example:
 
