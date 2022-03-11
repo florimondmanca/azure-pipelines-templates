@@ -13,7 +13,7 @@ jobs:
     steps:
       - template: step--python-install.yml
         parameters:
-          pythonVersion: $(pythonVersion)
+          pythonVersion: ${{ parameters.pythonVersion }}
       - bash: scripts/build
         displayName: "Build package"
       - bash: scripts/publish
