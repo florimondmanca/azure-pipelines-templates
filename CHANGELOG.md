@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Add support for Python 3.11.
+
 ## 5.0 - 2022-02-13
 
 ### Changed

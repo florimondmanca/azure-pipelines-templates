@@ -24,7 +24,7 @@ resources:
       type: github
       endpoint: github
       name: florimondmanca/azure-pipelines-templates
-      ref: refs/tags/5.0
+      ref: refs/tags/5.1
 ```
 
 Then reference templates as `<template>.yml@templates`.
@@ -43,10 +43,10 @@ jobs:
     parameters:
       jobs:
         # Minimal definition:
-        py310: null
+        py311: null
 
         # Complete definition:
-        py310_dj30_windows_pg:
+        py311_dj30_windows_pg:
           coverage: true
           os: windows
           services:
