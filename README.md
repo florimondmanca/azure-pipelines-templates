@@ -160,6 +160,19 @@ steps:
       coverage: true # optional
 ```
 
+### `step--npm-provision.yml`
+
+Setup a Node.js runtime and a cache for NPM dependencies.
+
+Example:
+
+```yaml
+steps:
+  - template: step--npm-provision.yml@templates
+    parameters:
+      nodeVersion: "18.x"
+```
+
 ### `step--yarn-provision.yml`
 
 Setup a Node.js runtime and a cache for Yarn dependencies.
@@ -170,5 +183,5 @@ Example:
 steps:
   - template: step--yarn-provision.yml@templates
     parameters:
-      nodeVersion: "12.x"
+      nodeVersion: "18.x"
 ```
