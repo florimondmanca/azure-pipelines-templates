@@ -24,7 +24,7 @@ resources:
       type: github
       endpoint: github
       name: florimondmanca/azure-pipelines-templates
-      ref: refs/tags/5.1
+      ref: refs/tags/6.0
 ```
 
 Then reference templates as `<template>.yml@templates`.
@@ -33,7 +33,7 @@ Then reference templates as `<template>.yml@templates`.
 
 ### `job--python-test.yml`
 
-Expected scripts: `make install`, `make test`.
+Expected scripts: `make install-python`, `make test`.
 
 Example:
 
@@ -57,7 +57,7 @@ jobs:
 
 ### `job--python-check.yml`
 
-Expected scripts: `make install`, `make check`.
+Expected scripts: `make install-python`, `make check`.
 
 Example:
 
@@ -65,14 +65,14 @@ Example:
 jobs:
   - template: job--python-check.yml@templates
     parameters:
-      pythonVersion: "3.10"
+      pythonVersion: "3.11"
 ```
 
 ### `job--python-docs-build.yml`
 
 Build docs under a Python environment.
 
-Expected scripts: `make install`, `make docs`.
+Expected scripts: `make install-python`, `make docs`.
 
 Example:
 
@@ -80,7 +80,7 @@ Example:
 jobs:
   - template: job--python-docs-build.yml@templates
     parameters:
-      pythonVersion: "3.10"
+      pythonVersion: "3.11"
 ```
 
 ### `job--python-publish.yml`
@@ -89,7 +89,7 @@ Publish a Python package to PyPI.
 
 #### Assumptions
 
-- `make install`, `make build`, `make publish` must exist.
+- `make install-python`, `make build`, `make publish` must exist.
 - `twine` and `wheel` must be installed.
 - `token` refers to a [PyPI API token](https://pypi.org/help/#apitoken) set via a [Python upload service connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml#python-package-download-service-connection) (Project settings > Service connection > New... > Python package upload). It may be provided through a variable group (Library > Variable group...), as shown below.
 
@@ -115,7 +115,7 @@ stages:
       - template: job--python-publish--tag.yml@templates
         parameters:
           token: $(pypiToken)
-          pythonVersion: "3.10"
+          pythonVersion: "3.11"
 ```
 
 ## Steps
@@ -127,28 +127,34 @@ Setup a Python runtime and a cache for pip dependencies.
 Example:
 
 ```yaml
+variables:
+  PIP_CACHE_DIR: $(Pipeline.Workspace)/.cache/pip
+
 steps:
   - template: step--python-provision.yml@templates
     parameters:
-      pythonVersion: "3.10"
+      pythonVersion: "3.11"
 ```
 
 ### `step--python-install.yml`
 
-Expected scripts: `make install`.
+Expected scripts: `make install-python`.
 
 Example:
 
 ```yaml
+variables:
+  PIP_CACHE_DIR: $(Pipeline.Workspace)/.cache/pip
+
 steps:
   - template: step--python-install.yml@templates
     parameters:
-      pythonVersion: "3.10"
+      pythonVersion: "3.11"
 ```
 
 ### `step--python-test.yml`
 
-Expected scripts: `make install`, `make test`.
+Expected scripts: `make install-python`, `make test`.
 
 Example:
 
@@ -156,32 +162,42 @@ Example:
 steps:
   - template: step--python-test.yml@templates
     parameters:
-      pythonVersion: "3.10"
+      pythonVersion: "3.11"
       coverage: true # optional
 ```
 
-### `step--npm-provision.yml`
+### `step--node-provision.yml`
+
+Expected scripts: `make install-node`.
 
 Setup a Node.js runtime and a cache for NPM dependencies.
 
 Example:
 
 ```yaml
+variables:
+  NODE_CACHE_FOLDER: $(Build.SourcesDirectory)/node_modules
+
 steps:
-  - template: step--npm-provision.yml@templates
+  - template: step--node-provision.yml@templates
     parameters:
       nodeVersion: "18.x"
 ```
 
-### `step--yarn-provision.yml`
+### `step--node-install.yml`
 
-Setup a Node.js runtime and a cache for Yarn dependencies.
+Expected scripts: `make install-node`.
+
+Setup a Node.js runtime, a cache for NPM dependencies, and install NPM dependencies.
 
 Example:
 
 ```yaml
+variables:
+  NODE_CACHE_FOLDER: $(Build.SourcesDirectory)/node_modules
+
 steps:
-  - template: step--yarn-provision.yml@templates
+  - template: step--node-install.yml@templates
     parameters:
       nodeVersion: "18.x"
 ```

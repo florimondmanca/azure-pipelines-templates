@@ -1,5 +1,20 @@
 # Changelog
 
+## 6.0 - 2022-11-05
+
+### Changed
+
+- `step--python-install.yml` now expects `make install-python`.
+
+### Removed
+
+- `step--yarn-provision.yml` has been removed.
+
+### Added
+
+- Add `step--node-provision.yml`.
+- Add `step--node-install.yml`.
+
 ## 5.1 - 2022-10-29
 
 ### Added
