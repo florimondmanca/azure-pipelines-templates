@@ -1,6 +1,9 @@
 parameters:
   - name: jobs
     type: object
+  - name: steps_before
+    type: stepList
+    default: []
 
 jobs:
   - ${{ each job in parameters.jobs }}:
@@ -19,6 +22,9 @@ jobs:
           variables: ${{ job.value.variables }}
 
         steps:
+          - ${{ each step in parameters.steps_before }}:
+            - ${{ step }}
+
           - template: step--python-test.yml
             parameters:
               ${{ if startsWith(job.key, 'py36') }}:

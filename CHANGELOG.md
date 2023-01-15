@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Add `step--playwright-cache.yml`.
+- Add `before_steps` parameter (`StepList`) to `job--python-test.yml`.
+
 ## 6.0 - 2022-11-05
 
 ### Changed

@@ -35,6 +35,13 @@ Then reference templates as `<template>.yml@templates`.
 
 Expected scripts: `make install-python`, `make test`.
 
+Parameters:
+
+* `jobs` - Mapping
+  * Key: a job name. The Python version is inferred from the start, eg `py311_pg` -> Python 3.11.
+  * Value: job configuration. Accepts `os`, `services`, `variables`, `coverage`.
+* `before_steps` : a list of steps to run before running `step--python-test.yml`.
+
 Example:
 
 ```yaml

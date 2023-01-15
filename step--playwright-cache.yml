@@ -1,0 +1,9 @@
+steps:
+  - task: Cache@2
+    inputs:
+      key: "playwright | $(Agent.OS) | requirements.txt"
+      restoreKeys: |
+        playwright | $(Agent.OS)
+        playwright
+      path: $(PLAYWRIGHT_CACHE_DIR)
+    displayName: "Cache Playwright browsers"
