@@ -1,5 +1,11 @@
 # Changelog
 
+## 6.2 - 2023-12-11
+
+### Added
+
+- Add support for Python 3.12.
+
 ## 6.1 - 2023-01-15
 
 ### Added
