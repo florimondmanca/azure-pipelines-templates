@@ -4,6 +4,9 @@ parameters:
   - name: coverage
     type: boolean
     default: false
+  - name: codecovToken
+    type: string
+
 
 steps:
   - template: step--python-install.yml
@@ -13,7 +16,10 @@ steps:
     displayName: "Run tests"
   - script: |
       pip install coverage  # Auto-convert `.coverage` to XML.
-      bash <(curl -s https://codecov.io/bash) -Z -C $(Build.SourceVersion)
+      coverage xml
+      curl -Os https://cli.codecov.io/latest/linux/codecov
+      chmod +x codecov
+      ./codecov --verbose upload-process -Z -t $(codecovToken) -C $(Build.SourceVersion) -f coverage.xml
     condition: eq('${{ parameters.coverage }}', 'true')
     continueOnError: true # Don't make builds fail if Codecov is temporarily unavailable.
     displayName: "Upload coverage"

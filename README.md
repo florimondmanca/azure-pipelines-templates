@@ -166,11 +166,16 @@ Expected scripts: `make install-python`, `make test`.
 Example:
 
 ```yaml
+variables:
+  # ...
+  - group: codecov-credentials  # Sets $(codecovToken)
+
 steps:
   - template: step--python-test.yml@templates
     parameters:
       pythonVersion: "3.11"
       coverage: true # optional
+      codecovToken: $(codecovToken)
 ```
 
 ### `step--node-provision.yml`

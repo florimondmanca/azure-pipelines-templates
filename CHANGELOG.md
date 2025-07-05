@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Change
+
+- Update `step--python-test.yml` to accomodate newly required upload token for Codecov.
+
 ## 6.3 - 2025-02-05
 
 ### Added
