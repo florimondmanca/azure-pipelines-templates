@@ -6,6 +6,7 @@ parameters:
     default: false
   - name: codecovToken
     type: string
+    default: null
 
 
 steps:
