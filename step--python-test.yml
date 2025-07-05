@@ -8,7 +8,6 @@ parameters:
     type: string
     default: null
 
-
 steps:
   - template: step--python-install.yml
     parameters:
@@ -20,7 +19,7 @@ steps:
       coverage xml
       curl -Os https://cli.codecov.io/latest/linux/codecov
       chmod +x codecov
-      ./codecov --verbose upload-process -Z -t $(codecovToken) -C $(Build.SourceVersion) -f coverage.xml
+      ./codecov --verbose upload-process -Z -t $(codecovToken) -C $(Build.SourceVersion) -r $(Build.Repository.Name) -f coverage.xml
     condition: eq('${{ parameters.coverage }}', 'true')
     continueOnError: true # Don't make builds fail if Codecov is temporarily unavailable.
     displayName: "Upload coverage"
